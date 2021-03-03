@@ -68,12 +68,12 @@ noise_1 = [	f if (200 < index < 500 and f > 1) else 0 for index, f in enumerate(
 filtered_noise1 = np.fft.ifft(noise_1[:len(noise_1)])
 filtered_noise1_data = np.array(filtered_noise1)
 
-#High Pass Filter (Filtering out the noise)
+#Upper band filter (Filtering out the noise)
 filtered_freq2 = [f if (950 < index < 1050 and f > 1) else 0 for index, f in enumerate(freq2)]
 filtered_data2 = np.fft.ifft(filtered_freq1[:len(filtered_freq2)])
 
 
-#Filtering for the noise
+#Lower band filter (Filtering for the noise)
 noise_2 = [	f if (425 < index < 525 and f > 1) else 0 for index, f in enumerate(freq2)]
 filtered_noise2 = np.fft.ifft(noise_1[:len(noise_2)]) 
 
@@ -142,5 +142,5 @@ wav = wave.open(file_1,'wb')
 wav.setparams((nchannels, sampwidth, int(48000.0),nframes,comptype,compname))
 
 for s in filtered_noise1_data:
-    wav.writeframes(st.pack('h',int(s*1)))
+    wav.writeframes(st.pack('h',int(s*10)))
 wav.close()

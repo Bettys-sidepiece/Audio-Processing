@@ -6,6 +6,8 @@ import wave
 import matplotlib.pyplot as plt
 
 frame_rate = 48000.0 #Audio frame rate
+
+# Make Sure these two wav files exist in the same folder as this file before attempting to run
 infile_1 = "sine_with_noise(G_minor).wav"
 infile_2 = "sine_with_noise(500hz).wav"
 
@@ -72,7 +74,7 @@ filtered_data2 = np.fft.ifft(filtered_freq1[:len(filtered_freq2)])
 
 
 #Filtering for the noise
-noise_2 = [	f if (200 < index < 500 and f > 1) else 0 for index, f in enumerate(freq2)]
+noise_2 = [	f if (425 < index < 525 and f > 1) else 0 for index, f in enumerate(freq2)]
 filtered_noise2 = np.fft.ifft(noise_1[:len(noise_2)]) 
 
 plt.figure(2)
@@ -92,6 +94,25 @@ plt.plot(filtered_noise1[:400])
 plt.subplot(4,1,4)
 plt.title("Frequency spectrum of Filtered Noise")
 plt.plot(noise_1)
+plt.xlim(0,1200)
+
+plt.figure(3)
+
+plt.subplots_adjust(hspace=.9)
+plt.subplot(4,1,1)
+plt.title("Filtered Sine_1 Wave")
+plt.plot(filtered_data2[:400],'-r')
+plt.subplot(4,1,2)
+plt.title("Filtered Frequency Spectrum")
+plt.plot(filtered_freq2,'-r')
+plt.xlim(0,1200)
+
+plt.subplot(4,1,3)
+plt.title("Filtered Out Noise(500Hz)")
+plt.plot(filtered_noise2[:400])
+plt.subplot(4,1,4)
+plt.title("Frequency spectrum of Filtered Noise")
+plt.plot(noise_2)
 plt.xlim(0,1200)
 plt.show()
 

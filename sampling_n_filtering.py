@@ -116,9 +116,9 @@ plt.plot(noise_2)
 plt.xlim(0,1200)
 plt.show()
 
+#Output filenames
 file = "Filtered_Sine.wav"
 file_1 = "Filtered_noise(Gminor).wav"
-
 
 #Now that the signals have been filtered you, two audio files are generated to listen to the noise and filtered signal
 

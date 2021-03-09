@@ -32,5 +32,7 @@ while True:
     fig.canvas.draw()
     fig.canvas.flush_events()
     plt.pause(0.001)
-
-
+    
+stream.stop_stream()
+stream.close()
+p.terminate()
